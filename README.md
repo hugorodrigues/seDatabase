@@ -85,7 +85,7 @@ $db->getRow('select * from books where year > :year', array(':year'=>2012));
 // array(
 // 	0 => array('id'=> 1, 'title'=>'New title', 'isbn'=>'AB123', 'year'=>'2012'),
 // 	1 => array('id'=> 2, 'title'=>'New title 2', 'isbn'=>'AB124', 'year'=>'2012'),
-)
+//)
 ```
 
 
@@ -108,7 +108,7 @@ $db->query('truncate books');
 
 (The MIT License)
 
-Copyright (c) 2012, Hugo Rodrigues <hugo a@t starteffect.com>
+Copyright (c) 2012, Hugo Rodrigues - hugo AT starteffect DOT com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -127,12 +127,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
-
-
-
-
-
-
-
