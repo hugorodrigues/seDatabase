@@ -33,30 +33,30 @@ $insertId = $db->insert('books',array(
 ```
 
 
-### update($table, $data, $where)
+### update($table, $data, $where, $binds)
 ```php
 $db->update('books', array('title'=>'New title!'), 1);
 // Executes: update books set title = 'New title' where id = 1;
 
-$db->update('books', array('title'=>'New title'), array('year > 2012'));
+$db->update('books', array('title'=>'New title'), 'year > 2012');
 // Executes: update books set title = 'New title' where year > 2012;
 
 // Escaped 'where params' when you get them from your users
-$db->update('books', array('title'=>'New title'), array('year > :year', array(':year'=>2012)));
+$db->update('books', array('title'=>'New title'), 'year > :year', array(':year'=>2012));
 // Executes: update books set title = 'New title' where year > 2012;
 ```
 
 
 
-### delete($table, $where)
+### delete($table, $where, $binds)
 ```php
 $db->delete('books', 1);
 // delete from books where id = 1;
 
-$db->delete('books', array('year > 2012'));
+$db->delete('books', 'year > 2012');
 // delete from books where year > 2012;
 
-$db->delete('books', array('year > :year', array(':year'=> 2012)));
+$db->delete('books', 'year > :year', array(':year'=> 2012));
 // delete from books where year > 2012;
 ```
 

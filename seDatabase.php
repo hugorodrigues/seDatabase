@@ -45,17 +45,14 @@ class seDatabase {
 
 
 
-	function update($table, $data, $where=false){
+	function update($table, $data, $where='1 = 1', $binds=array()){
 
 		// Numerico para where
-    if (is_numeric($where)) 
-      $where = array('id = :id', array(':id'=> $where));
-
-    if ($where === false) $where = array('1 = 1', array());
-
-    $binds = $where[1];
-    $where = $where[0];
-
+    if (is_numeric($where))
+    {
+      $binds = array(':id'=>$where);      
+      $where = 'id = :id';
+    }
 
     $fields = array();
 
@@ -74,16 +71,14 @@ class seDatabase {
 	}
 
 
-	function delete($table, $where=false) {
+	function delete($table, $where='1 = 1', $binds=array()) {
 
     // Numerico para where
-    if (is_numeric($where)) 
-      $where = array('id = :id', array(':id'=> $where));
-
-    if ($where === false) $where = array('1 = 1', array());
-
-    $binds = $where[1];
-    $where = $where[0];
+    if (is_numeric($where))
+    {
+      $binds = array(':id'=>$where);      
+      $where = 'id = :id';
+    }
 
     return $this->query("DELETE FROM $table WHERE $where", $binds, true);
 	}	
