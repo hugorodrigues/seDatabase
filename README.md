@@ -108,7 +108,8 @@ $db->query('truncate books');
 
 (The MIT License)
 
-Copyright (c) 2012, Hugo Rodrigues - hugo AT starteffect DOT com
+Copyright (c) 2010-2013 Hugo Rodrigues, Hugo Rodrigues, StartEffect U. Lda
+http://starteffect.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

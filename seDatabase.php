@@ -1,4 +1,8 @@
 <?php
+//     seDatabase.php
+//     http://starteffect.com | https://github.com/hugorodrigues
+//     (c) Copyright 2010-2013 Hugo Rodrigues, StartEffect U. Lda
+//     This code may be freely distributed under the MIT license.
 
 class seDatabase {
 	var $pdo;
