@@ -81,7 +81,7 @@ $result = $db->getRow('select * from books where id = :id', array(':id'=>1));
 
 ### getResults($sql, $params)
 ```php
-$db->getRow('select * from books where year > :year', array(':year'=>2012)); 
+$db->getResults('select * from books where year > :year', array(':year'=>2012)); 
 // array(
 // 	0 => array('id'=> 1, 'title'=>'New title', 'isbn'=>'AB123', 'year'=>'2012'),
 // 	1 => array('id'=> 2, 'title'=>'New title 2', 'isbn'=>'AB124', 'year'=>'2012'),
