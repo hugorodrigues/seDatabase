@@ -5,9 +5,9 @@
 //     This code may be freely distributed under the MIT license.
 
 class seDatabase {
-	var $pdo;
+  var $pdo;
 
-	function __construct($config){
+  function __construct($config){
 
     try {
       // Open Connection
@@ -22,18 +22,18 @@ class seDatabase {
         $this->error($error);
     }
 
-	}
+  }
 
 
-	function error($error){
-		die($error->getMessage());
-	}
+  function error($error){
+    die($error->getMessage());
+  }
 
 
-	function insert($table, $data){
+  function insert($table, $data){
 
     if ($table == '' or !is_array($data)) 
-    	return $this->error('Insert - No data');
+      return $this->error('Insert - No data');
 
     foreach((array) $data as $field=>$value)
     {
@@ -45,13 +45,13 @@ class seDatabase {
     
     $this->query($sql, $data, true);
     return $this->pdo->lastInsertId();
-	}
+  }
 
 
 
-	function update($table, $data, $where='1 = 1', $binds=array()){
+  function update($table, $data, $where='1 = 1', $binds=array()){
 
-		// Numerico para where
+    // Numerico para where
     if (is_numeric($where))
     {
       $binds = array(':id'=>$where);      
@@ -63,8 +63,8 @@ class seDatabase {
     // Processa Valores/Campos
     foreach((array) $data as $field=>$value)
     {
-			$fields[] = "$field = :update_$field";
-			$binds[':update_'.$field] = $value;
+      $fields[] = "$field = :update_$field";
+      $binds[':update_'.$field] = $value;
     }
 
 
@@ -72,10 +72,10 @@ class seDatabase {
     $fields = implode(',', $fields);
 
     return $this->query("UPDATE $table SET $fields WHERE $where", $binds, true);
-	}
+  }
 
 
-	function delete($table, $where='1 = 1', $binds=array()) {
+  function delete($table, $where='1 = 1', $binds=array()) {
 
     // Numerico para where
     if (is_numeric($where))
@@ -85,26 +85,43 @@ class seDatabase {
     }
 
     return $this->query("DELETE FROM $table WHERE $where", $binds, true);
-	}	
+  } 
+
+  function get($table, $field='id', $value='') {
+
+    // if field is numeric bind to ID
+    if (is_numeric($field))
+    {
+      $value = $field;
+      $field = 'id';
+    }
+
+    return $this->getRow("select * from $table where $field = :value limit 1", array(':value'=>$value));
+  }
+  
+  function exists($table, $field='id', $value='') {
+    return is_array( $this->get($table, $field, $value) );
+  }
+
 
 
   public function query($sql='',$params='', $status= false)
   {
 
-		try {
-			$tmp = $this->pdo->prepare($sql);
+    try {
+      $tmp = $this->pdo->prepare($sql);
 
-			if (is_array($params)) 
-				$result = $tmp->execute($params);
-			else 
-				$result = $tmp->execute();
-		}
-		catch(Exception $exception)
-		{
-			return $this->error($exception);
-		}
+      if (is_array($params)) 
+        $result = $tmp->execute($params);
+      else 
+        $result = $tmp->execute();
+    }
+    catch(Exception $exception)
+    {
+      return $this->error($exception);
+    }
 
-		return ($status == false) ?  $tmp : $result;
+    return ($status == false) ?  $tmp : $result;
   }
 
 
@@ -131,5 +148,5 @@ class seDatabase {
       return $res;
   }
 
-} 
 
+}

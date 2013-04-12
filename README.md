@@ -99,8 +99,21 @@ $db->getResults('select * from books where year > :year', array(':year'=>2012));
 $db->query('truncate books');
 ```
 
+### exists($table, $field, $value)
+```php
+if ($db->exists('books', 1)) echo "Book ID 1 is valid" else "Book ID 1 is invalid";
 
+if ($db->exists('books', 'isbn', 'sgs528dh2')) echo "Book with isbn sgs528dh2 exists" else "Can't find that book";
+```
 
+### exists($table, $field, $value)
+```php
+// get book with id: 1
+$book = $db->get('books', 1);
+
+// get book with isbn: sgs528dh2
+$book = $db->get('books', 'isbn', 'sgs528dh2');
+```
 
 
 ---
